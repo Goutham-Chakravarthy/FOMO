@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <AuroraBackground>{children}</AuroraBackground>
-        <Navbar> </Navbar>
+        <Navbar />
         
       </body>
     </html>
