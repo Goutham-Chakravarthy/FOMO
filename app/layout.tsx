@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter();
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         <AuroraBackground>{children}</AuroraBackground>
+        <Navbar> </Navbar>
         
       </body>
     </html>
