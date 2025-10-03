@@ -1,0 +1,150 @@
+'use client';
+
+import React from 'react';
+import { Code, Smartphone, Cloud, Terminal, Workflow, Users } from 'lucide-react';
+
+// TypeScript interface for service data
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+const Services = () => {
+  const services: Service[] = [
+    {
+      id: 1,
+      title: "Web Development",
+      description: "Custom web applications built with modern frameworks like Next.js, React, and TypeScript for scalable solutions.",
+      icon: <Code className="size-8 text-green-400" />
+    },
+    {
+      id: 2,
+      title: "Mobile Apps",
+      description: "Native and cross-platform mobile applications with seamless user experiences and robust performance.",
+      icon: <Smartphone className="size-8 text-green-400" />
+    },
+    {
+      id: 3,
+      title: "Cloud Solutions",
+      description: "Scalable cloud infrastructure and deployment solutions using AWS, Azure, and Google Cloud Platform.",
+      icon: <Cloud className="size-8 text-green-400" />
+    },
+    {
+      id: 4,
+      title: "DevOps & CI/CD",
+      description: "Automated deployment pipelines, containerization with Docker, and Kubernetes orchestration for efficiency.",
+      icon: <Terminal className="size-8 text-green-400" />
+    },
+    {
+      id: 5,
+      title: "API Development",
+      description: "RESTful and GraphQL API design and development with comprehensive documentation and security.",
+      icon: <Workflow className="size-8 text-green-400" />
+    },
+    {
+      id: 6,
+      title: "Technical Consulting",
+      description: "Expert guidance on architecture, technology stack selection, and best practices for your projects.",
+      icon: <Users className="size-8 text-green-400" />
+    }
+  ];
+
+  return (
+    <section id="services" className="min-h-screen bg-black py-20 px-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold font-mono text-green-400 mb-6">
+            <span className="text-gray-400">$</span> services --list
+          </h2>
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+            Comprehensive development solutions powered by cutting-edge technology
+            and industry best practices to bring your vision to life.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group"
+            >
+              {/* Icon Container */}
+              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+                {service.icon}
+              </div>
+
+              {/* Service Title */}
+              <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+                {service.title}
+              </h3>
+
+              {/* Service Description */}
+              <p className="text-gray-400 text-base leading-relaxed">
+                {service.description}
+              </p>
+
+              {/* Optional: Learn More Link */}
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
+                  Learn more →
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action Section */}
+        <div className="text-center mt-20">
+          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl max-w-4xl mx-auto">
+            <h3 className="text-3xl md:text-4xl font-bold font-mono text-green-400 mb-4">
+              Ready to Start Your Project?
+            </h3>
+            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+              Let's discuss how we can transform your ideas into powerful digital solutions
+              that drive growth and innovation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white/10 backdrop-blur-lg border border-green-400/30 rounded-full px-8 py-4 text-green-400 hover:border-green-400 hover:scale-105 hover:bg-green-400/10 transition-all duration-300 font-mono text-lg">
+                Get Started →
+              </button>
+              <button className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-8 py-4 text-white hover:border-green-400/50 hover:scale-105 transition-all duration-300 font-mono text-lg">
+                View Portfolio
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Terminal-style Footer */}
+        <div className="mt-16">
+          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 max-w-2xl mx-auto">
+            <div className="bg-black/50 rounded-lg p-4 font-mono text-sm">
+              <div className="flex items-center space-x-2 mb-3">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-gray-400 ml-4">services.sh</span>
+              </div>
+              <div className="space-y-1">
+                <p className="text-green-400">
+                  <span className="text-gray-400">$</span> ./check-availability.sh
+                </p>
+                <p className="text-white pl-4">✓ Currently accepting new projects</p>
+                <p className="text-white pl-4">✓ Response time: &lt; 24 hours</p>
+                <p className="text-white pl-4">✓ Free consultation available</p>
+                <p className="text-green-400 mt-2">
+                  <span className="text-gray-400">$</span> <span className="animate-pulse">_</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;

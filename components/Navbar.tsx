@@ -13,7 +13,7 @@ const Navbar = () => {
         <span>Home</span>
       </Link>
 
-      <Link href="/services" className="hover:text-gray-300 transition-all hover:scale-105">
+      <Link href="/#services" className="hover:text-gray-300 transition-all hover:scale-105">
         <span>Services</span>
       </Link>
 

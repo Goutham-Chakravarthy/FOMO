@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import Navbar from "@/components/Navbar";
+import Services from "@/components/Services";
 
 const inter = Inter();
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       >
         <AuroraBackground>{children}</AuroraBackground>
         <Navbar />
+        <Services />
         
       </body>
     </html>
