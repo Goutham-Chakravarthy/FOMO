@@ -1,0 +1,10 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript",
+    "javascriptreact": "javascript",
+    "css": "css",
+    "postcss": "css"
+  },
+  "tailwindCSS.emmetCompletions": true
+}
