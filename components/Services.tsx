@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Code, Smartphone, Cloud, Terminal, Workflow, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Code, Smartphone, Terminal, Users } from 'lucide-react';
 
 // TypeScript interface for service data
 interface Service {
@@ -12,6 +12,43 @@ interface Service {
 }
 
 const Services = () => {
+  const [terminalText, setTerminalText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [serviceIndex, setServiceIndex] = useState(0);
+  
+  const terminalServices = [
+    "Cloud Solutions",
+    "API Development",
+    "UI/UX Design",
+    "Database Design",
+    "System Architecture"
+  ];
+
+  useEffect(() => {
+    const currentService = terminalServices[serviceIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseTime = 2000;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        if (terminalText.length < currentService.length) {
+          setTerminalText(currentService.slice(0, terminalText.length + 1));
+        } else {
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      } else {
+        if (terminalText.length > 0) {
+          setTerminalText(terminalText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setServiceIndex((serviceIndex + 1) % terminalServices.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [terminalText, isDeleting, serviceIndex]);
+
   const services: Service[] = [
     {
       id: 1,
@@ -27,24 +64,12 @@ const Services = () => {
     },
     {
       id: 3,
-      title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure and deployment solutions using AWS, Azure, and Google Cloud Platform.",
-      icon: <Cloud className="size-8 text-green-400" />
-    },
-    {
-      id: 4,
       title: "DevOps & CI/CD",
       description: "Automated deployment pipelines, containerization with Docker, and Kubernetes orchestration for efficiency.",
       icon: <Terminal className="size-8 text-green-400" />
     },
     {
-      id: 5,
-      title: "API Development",
-      description: "RESTful and GraphQL API design and development with comprehensive documentation and security.",
-      icon: <Workflow className="size-8 text-green-400" />
-    },
-    {
-      id: 6,
+      id: 4,
       title: "Technical Consulting",
       description: "Expert guidance on architecture, technology stack selection, and best practices for your projects.",
       icon: <Users className="size-8 text-green-400" />
@@ -65,36 +90,106 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group"
-            >
-              {/* Icon Container */}
+        {/* 5-Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Left Column - 2 squares stacked */}
+          <div className="flex flex-col gap-8">
+            {/* Web Development */}
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group aspect-square flex flex-col">
               <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
-                {service.icon}
+                {services[0].icon}
               </div>
-
-              {/* Service Title */}
               <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
-                {service.title}
+                {services[0].title}
               </h3>
-
-              {/* Service Description */}
-              <p className="text-gray-400 text-base leading-relaxed">
-                {service.description}
+              <p className="text-gray-400 text-base leading-relaxed flex-grow">
+                {services[0].description}
               </p>
-
-              {/* Optional: Learn More Link */}
               <div className="mt-6 pt-4 border-t border-white/10">
                 <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
                   Learn more →
                 </button>
               </div>
             </div>
-          ))}
+
+            {/* DevOps & CI/CD */}
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group aspect-square flex flex-col">
+              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+                {services[2].icon}
+              </div>
+              <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+                {services[2].title}
+              </h3>
+              <p className="text-gray-400 text-base leading-relaxed flex-grow">
+                {services[2].description}
+              </p>
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
+                  Learn more →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Center Column - Tall vertical rectangle */}
+          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group flex flex-col">
+            <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+              {services[1].icon}
+            </div>
+            <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+              {services[1].title}
+            </h3>
+            <p className="text-gray-400 text-base leading-relaxed flex-grow">
+              {services[1].description}
+            </p>
+            <div className="mt-6 pt-4 border-t border-white/10">
+              <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
+                Learn more →
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column - 2 squares stacked */}
+          <div className="flex flex-col gap-8">
+            {/* Terminal with Typing Animation */}
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 shadow-xl aspect-square flex flex-col">
+              <div className="bg-black/50 rounded-lg p-4 font-mono text-sm flex-1 flex flex-col">
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-gray-400 ml-4">services.sh</span>
+                </div>
+                <div className="flex-1 flex flex-col justify-center space-y-3">
+                  <p className="text-green-400">
+                    <span className="text-gray-400">$</span> ./showcase.sh
+                  </p>
+                  <p className="text-white pl-4">We provide:</p>
+                  <p className="text-green-400 text-lg pl-4 min-h-[28px]">
+                    {terminalText}<span className="animate-pulse">_</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Technical Consulting */}
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group aspect-square flex flex-col">
+              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+                {services[3].icon}
+              </div>
+              <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+                {services[3].title}
+              </h3>
+              <p className="text-gray-400 text-base leading-relaxed flex-grow">
+                {services[3].description}
+              </p>
+              <div className="mt-6 pt-4 border-t border-white/10">
+                <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
+                  Learn more →
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Call to Action Section */}
