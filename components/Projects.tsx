@@ -15,6 +15,7 @@ type Product = {
   title: string;
   link: string;
   thumbnail: string;
+  description: string;
 };
 
 // Stock product list (15 items)
@@ -24,90 +25,120 @@ const products: Product[] = [
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Modern storefront UI\nSecure payments & orders\nAdmin analytics & inventory",
   },
   {
     title: "Task Management App",
     link: "#",
     thumbnail:
       "https://cdn.dribbble.com/userupload/43451921/file/original-59f489ccfd0c3d538e0b337e19c84178.png?resize=752x&vertical=center",
+    description:
+      "Plan tasks fast\nCollaborate in real-time\nBoards, chat & notifications",
   },
   {
     title: "AI Chat Application",
     link: "#",
     thumbnail:
       "https://cdn.dribbble.com/userupload/43212483/file/original-9d5da2da50b8566ef5fd79f8ad46786e.png?resize=752x&vertical=center",
+    description:
+      "GPT‑powered replies\nContext memory & tools\nSecure, scalable infra",
   },
   {
     title: "Analytics Dashboard",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "KPI insights in real time\nCustom charts & filters\nExportable reports",
   },
   {
     title: "Social Media Platform",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Feeds, stories, DMs\nCreator tools & moderation\nGraphQL API on cloud",
   },
   {
     title: "DevOps Automation",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Kubernetes pipelines\nIaC with Terraform\nOne‑click deployments",
   },
   {
     title: "FinTech Wallet",
     link: "#",
     thumbnail:
       "https://cdn.dribbble.com/userupload/43136770/file/original-5fc76b569606af78b9aa2c2d07693816.jpg?resize=752x&vertical=center",
+    description:
+      "Instant transfers\nFraud checks & limits\nInsights and budgeting",
   },
   {
     title: "IoT Control Center",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1553341640-9397992456f3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
+    description:
+      "Device fleets at scale\nTelemetry & alerts\nRemote actions & rules",
   },
   {
     title: "Video Streaming App",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Adaptive bitrate video\nPlaylists & watchlists\nRealtime chat & sync",
   },
   {
     title: "EdTech LMS",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Courses & quizzes\nProgress tracking\nCertificates & grading",
   },
   {
     title: "Travel Booking",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1496307653780-42ee777d4833?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Flights, stays & cars\nDynamic pricing\nSmart search & maps",
   },
   {
     title: "Healthcare Portal",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Appointments & records\nHIPAA‑ready privacy\nTelemedicine chat",
   },
   {
     title: "Crypto Exchange",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1172",
+    description:
+      "Spot & limit orders\nLedger & cold storage\nCharts and webhooks",
   },
   {
     title: "Food Delivery",
     link: "#",
     thumbnail:
       "https://cdn.dribbble.com/userupload/10848493/file/original-3663c8ffc97413a862d022d6c8bb9bce.png?resize=752x&vertical=center",
+    description:
+      "Multi‑vendor menus\nLive courier tracking\nRatings & promos",
   },
   {
     title: "AR Showroom",
     link: "#",
     thumbnail:
       "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200&auto=format&fit=crop",
+    description:
+      "Immersive product views\nTrue‑to‑scale models\nOne‑tap purchase",
   },
 ];
 
@@ -232,8 +263,12 @@ export const ProductCard = ({
           loading="lazy"
         />
       </a>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black transition-opacity duration-300 pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-semibold">
+      {/* Top-left description (3 lines) shown on hover */}
+      <div className="absolute top-4 left-4 right-6 z-10 text-white/90 text-xs sm:text-sm md:text-base font-medium whitespace-pre-line opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 [text-shadow:0_1px_2px_rgba(0,0,0,0.6)]">
+        {product.description}
+      </div>
+      <div className="absolute inset-0 h-full w-full z-0 opacity-0 group-hover/product:opacity-80 bg-black transition-opacity duration-300 pointer-events-none"></div>
+      <h2 className="absolute bottom-4 left-4 z-10 opacity-0 group-hover/product:opacity-100 text-white font-semibold">
         {product.title}
       </h2>
     </motion.div>
