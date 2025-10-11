@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
+import Projects from "@/components/Projects";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <AuroraBackground>{children}</AuroraBackground>
         <Navbar />
         <Services />
+        <Projects />
         
       </body>
     </html>
