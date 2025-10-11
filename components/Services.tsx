@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Code, Smartphone, Terminal, Users } from 'lucide-react';
+import { CardSpotlight } from '@/components/ui/card-spotlight';
 
 // TypeScript interface for service data
 interface Service {
@@ -95,59 +96,68 @@ const Services = () => {
           {/* Left Column - 2 squares stacked */}
           <div className="flex flex-col gap-8">
             {/* Web Development */}
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group aspect-square flex flex-col">
-              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+            <CardSpotlight 
+              color="#10b981"
+              className="bg-white/10 backdrop-blur-lg border-white/20 rounded-2xl p-8 group aspect-square flex flex-col"
+            >
+              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300 relative z-10">
                 {services[0].icon}
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+              <h3 className="text-2xl font-semibold text-white mb-3 font-mono relative z-10">
                 {services[0].title}
               </h3>
-              <p className="text-gray-400 text-base leading-relaxed flex-grow">
+              <p className="text-gray-400 text-base leading-relaxed flex-grow relative z-10">
                 {services[0].description}
               </p>
-              <div className="mt-6 pt-4 border-t border-white/10">
+              <div className="mt-6 pt-4 border-t border-white/10 relative z-10">
                 <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
                   Learn more →
                 </button>
               </div>
-            </div>
+            </CardSpotlight>
 
             {/* DevOps & CI/CD */}
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group aspect-square flex flex-col">
-              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+            <CardSpotlight 
+              color="#10b981"
+              className="bg-white/10 backdrop-blur-lg border-white/20 rounded-2xl p-8 group aspect-square flex flex-col"
+            >
+              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300 relative z-10">
                 {services[2].icon}
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+              <h3 className="text-2xl font-semibold text-white mb-3 font-mono relative z-10">
                 {services[2].title}
               </h3>
-              <p className="text-gray-400 text-base leading-relaxed flex-grow">
+              <p className="text-gray-400 text-base leading-relaxed flex-grow relative z-10">
                 {services[2].description}
               </p>
-              <div className="mt-6 pt-4 border-t border-white/10">
+              <div className="mt-6 pt-4 border-t border-white/10 relative z-10">
                 <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
                   Learn more →
                 </button>
               </div>
-            </div>
+            </CardSpotlight>
           </div>
 
           {/* Center Column - Tall vertical rectangle */}
-          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group flex flex-col">
-            <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+          <CardSpotlight 
+            color="#10b981"
+            className="bg-white/10 backdrop-blur-lg border-white/20 rounded-2xl p-8 group flex flex-col"
+          >
+            <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300 relative z-10">
               {services[1].icon}
             </div>
-            <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+            <h3 className="text-2xl font-semibold text-white mb-3 font-mono relative z-10">
               {services[1].title}
             </h3>
-            <p className="text-gray-400 text-base leading-relaxed flex-grow">
+            <p className="text-gray-400 text-base leading-relaxed flex-grow relative z-10">
               {services[1].description}
             </p>
-            <div className="mt-6 pt-4 border-t border-white/10">
+            <div className="mt-6 pt-4 border-t border-white/10 relative z-10">
               <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
                 Learn more →
               </button>
             </div>
-          </div>
+          </CardSpotlight>
 
           {/* Right Column - 2 squares stacked */}
           <div className="flex flex-col gap-8">
@@ -160,7 +170,7 @@ const Services = () => {
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   <span className="text-gray-400 ml-4">services.sh</span>
                 </div>
-                <div className="flex-1 flex flex-col justify-center space-y-3">
+                <div className="flex-1 flex flex-col justify-start space-y-3">
                   <p className="text-green-400">
                     <span className="text-gray-400">$</span> ./showcase.sh
                   </p>
@@ -173,22 +183,25 @@ const Services = () => {
             </div>
 
             {/* Technical Consulting */}
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl hover:scale-105 hover:bg-white/15 hover:shadow-green-400/20 transition-all duration-300 group aspect-square flex flex-col">
-              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300">
+            <CardSpotlight 
+              color="#10b981"
+              className="bg-white/10 backdrop-blur-lg border-white/20 rounded-2xl p-8 group aspect-square flex flex-col"
+            >
+              <div className="bg-green-400/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-green-400/20 transition-all duration-300 relative z-10">
                 {services[3].icon}
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3 font-mono">
+              <h3 className="text-2xl font-semibold text-white mb-3 font-mono relative z-10">
                 {services[3].title}
               </h3>
-              <p className="text-gray-400 text-base leading-relaxed flex-grow">
+              <p className="text-gray-400 text-base leading-relaxed flex-grow relative z-10">
                 {services[3].description}
               </p>
-              <div className="mt-6 pt-4 border-t border-white/10">
+              <div className="mt-6 pt-4 border-t border-white/10 relative z-10">
                 <button className="text-green-400 hover:text-green-300 font-mono text-sm transition-colors duration-300 group-hover:translate-x-1 transform">
                   Learn more →
                 </button>
               </div>
-            </div>
+            </CardSpotlight>
           </div>
         </div>
 
@@ -213,30 +226,6 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Terminal-style Footer */}
-        <div className="mt-16">
-          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 max-w-2xl mx-auto">
-            <div className="bg-black/50 rounded-lg p-4 font-mono text-sm">
-              <div className="flex items-center space-x-2 mb-3">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-gray-400 ml-4">services.sh</span>
-              </div>
-              <div className="space-y-1">
-                <p className="text-green-400">
-                  <span className="text-gray-400">$</span> ./check-availability.sh
-                </p>
-                <p className="text-white pl-4">✓ Currently accepting new projects</p>
-                <p className="text-white pl-4">✓ Response time: &lt; 24 hours</p>
-                <p className="text-white pl-4">✓ Free consultation available</p>
-                <p className="text-green-400 mt-2">
-                  <span className="text-gray-400">$</span> <span className="animate-pulse">_</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
