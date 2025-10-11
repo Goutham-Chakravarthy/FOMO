@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Code, Smartphone, Terminal, Users } from 'lucide-react';
 import { CardSpotlight } from '@/components/ui/card-spotlight';
+import Image from 'next/image';
 
 // TypeScript interface for service data
 interface Service {
@@ -78,8 +79,19 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="min-h-screen bg-black py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="relative min-h-screen bg-black py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden">
+      {/* Background image */}
+      <Image
+        src="/projects-bg.jpg"
+        alt="Services background"
+        fill
+        priority
+        className="object-cover object-center opacity-100"
+      />
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/50" />
+
+      <div className="relative max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold font-mono text-green-400 mb-6">
