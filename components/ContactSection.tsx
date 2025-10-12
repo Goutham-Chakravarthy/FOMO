@@ -20,9 +20,9 @@ export default function ContactSection(): React.JSX.Element {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(1200px_800px_at_80%_-20%,rgba(99,102,241,0.35),transparent),radial-gradient(900px_600px_at_20%_20%,rgba(34,211,238,0.2),transparent),linear-gradient(180deg,#0b0b12,#0a0a0f)]">
+    <section className="relative overflow-hidden bg-[radial-gradient(1200px_800px_at_80%_-20%,rgba(34,197,94,0.25),transparent),radial-gradient(900px_600px_at_20%_20%,rgba(16,185,129,0.18),transparent),linear-gradient(180deg,#0b0b12,#0a0a0f)]">
       <BeamGridBackground
-        gridSize={42}
+        gridSize={45}
         gridColor="rgba(255,255,255,0.06)"
         darkGridColor="rgba(255,255,255,0.06)"
         beamColor="rgba(34, 197, 94, 0.85)"
@@ -30,19 +30,19 @@ export default function ContactSection(): React.JSX.Element {
         beamSpeed={0.12}
         beamThickness={3}
         glowIntensity={45}
-        showFade={true}
-        fadeIntensity={18}
+        showFade={false}
+        fadeIntensity={25}
         className="z-0"
       />
 
-      <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl animate-pulse" />
-      <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-cyan-500/20 blur-3xl animate-pulse" />
+      <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-green-500/20 blur-3xl animate-pulse" />
+      <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-emerald-500/20 blur-3xl animate-pulse" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-20">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col justify-center">
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-cyan-300/90 backdrop-blur">
-              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-green-300/90 backdrop-blur">
+              <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-green-400" />
               We’d love to hear from you
             </div>
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
@@ -57,9 +57,9 @@ export default function ContactSection(): React.JSX.Element {
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <a
                 href="mailto:hello@example.com"
-                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 transition hover:border-cyan-400/30 hover:bg-white/10 backdrop-blur"
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 transition hover:border-green-400/30 hover:bg-white/10 backdrop-blur"
               >
-                <div className="rounded-lg bg-cyan-500/15 p-2 text-cyan-300 transition group-hover:bg-cyan-500/25">
+                <div className="rounded-lg bg-green-500/15 p-2 text-green-300 transition group-hover:bg-green-500/25">
                   <Mail size={18} />
                 </div>
                 <div>
@@ -70,9 +70,9 @@ export default function ContactSection(): React.JSX.Element {
 
               <a
                 href="tel:+918095534884"
-                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 transition hover:border-fuchsia-400/30 hover:bg-white/10 backdrop-blur"
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 transition hover:border-green-400/30 hover:bg-white/10 backdrop-blur"
               >
-                <div className="rounded-lg bg-fuchsia-500/15 p-2 text-fuchsia-300 transition group-hover:bg-fuchsia-500/25">
+                <div className="rounded-lg bg-green-500/15 p-2 text-green-300 transition group-hover:bg-green-500/25">
                   <Phone size={18} />
                 </div>
                 <div>
@@ -81,8 +81,8 @@ export default function ContactSection(): React.JSX.Element {
                 </div>
               </a>
 
-              <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 transition hover:border-indigo-400/30 hover:bg-white/10 backdrop-blur">
-                <div className="rounded-lg bg-indigo-500/15 p-2 text-indigo-300 transition group-hover:bg-indigo-500/25">
+              <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 transition hover:border-green-400/30 hover:bg-white/10 backdrop-blur">
+                <div className="rounded-lg bg-green-500/15 p-2 text-green-300 transition group-hover:bg-green-500/25">
                   <MapPin size={18} />
                 </div>
                 <div>
@@ -96,7 +96,7 @@ export default function ContactSection(): React.JSX.Element {
           <div className="order-1 lg:order-2 lg:col-span-5">
             <div className="relative rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
               <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10" />
-              <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-fuchsia-500/10 via-transparent to-cyan-500/10" />
+              <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10" />
 
               <form onSubmit={onSubmit} className="relative space-y-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -107,7 +107,7 @@ export default function ContactSection(): React.JSX.Element {
                       name="name"
                       required
                       placeholder="Your full name"
-                      className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none backdrop-blur transition focus:border-fuchsia-400/40 focus:ring-2 focus:ring-fuchsia-500/20"
+                      className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none backdrop-blur transition focus:border-green-400/40 focus:ring-2 focus:ring-green-500/20"
                     />
                   </div>
                   <div>
@@ -117,7 +117,7 @@ export default function ContactSection(): React.JSX.Element {
                       name="email"
                       required
                       placeholder="name@company.com"
-                      className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none backdrop-blur transition focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-500/20"
+                      className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none backdrop-blur transition focus:border-green-400/40 focus:ring-2 focus:ring-green-500/20"
                     />
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function ContactSection(): React.JSX.Element {
                     name="subject"
                     required
                     placeholder="How can we help?"
-                    className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none backdrop-blur transition focus:border-indigo-400/40 focus:ring-2 focus:ring-indigo-500/20"
+                    className="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder-gray-400 outline-none backdrop-blur transition focus:border-green-400/40 focus:ring-2 focus:ring-green-500/20"
                   />
                 </div>
 
@@ -147,8 +147,8 @@ export default function ContactSection(): React.JSX.Element {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-fuchsia-600 via-indigo-600 to-cyan-600 px-5 py-3 text-sm font-medium text-white shadow-lg transition focus:outline-none focus:ring-2 focus:ring-white/20 ${
-                    loading ? "opacity-80 cursor-not-allowed" : "hover:from-fuchsia-500 hover:to-cyan-500"
+                  className={`group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-green-600 via-emerald-600 to-lime-600 px-5 py-3 text-sm font-medium text-white shadow-lg transition focus:outline-none focus:ring-2 focus:ring-white/20 ${
+                    loading ? "opacity-80 cursor-not-allowed" : "hover:from-green-500 hover:to-lime-500"
                   }`}
                 >
                   <span className="relative z-10 flex items-center gap-2">
