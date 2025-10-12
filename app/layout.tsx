@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={`${inter.className} antialiased`}
       >
         <AuroraBackground>{children}</AuroraBackground>
