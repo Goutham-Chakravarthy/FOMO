@@ -85,17 +85,6 @@ export default function About(): JSX.Element {
             <AnimatedTooltip items={teamMembers} />
           </div>
         </section>
-
-        {/* Section 4 - Terminal Quote */}
-        <section>
-          <div className="bg-white/5 border border-green-400/30 rounded-2xl p-8 max-w-4xl mx-auto">
-            <div className="text-green-400 font-mono">$ echo</div>
-            <blockquote className="text-2xl font-mono text-white italic mt-4">
-              "Building the future, one line of code at a time."
-            </blockquote>
-            <div className="text-gray-400 text-right mt-4">- Our Philosophy</div>
-          </div>
-        </section>
       </div>
     </section>
   );
