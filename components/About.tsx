@@ -42,7 +42,7 @@ const teamMembers = [
   },
 ];
 
-export default function About(): JSX.Element {
+export default function About(): React.JSX.Element {
   return (
     <section className="bg-black min-h-screen py-20 px-6">
       <div className="max-w-7xl mx-auto space-y-20">
