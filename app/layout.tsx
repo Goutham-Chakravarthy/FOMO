@@ -26,13 +26,27 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${inter.className} antialiased`}
       >
-        <AuroraBackground>{children}</AuroraBackground>
         <Navbar />
-        <Services />
-        <Projects />
-        <About />
-        <ContactSection />
         
+        <div id="home">
+          <AuroraBackground>{children}</AuroraBackground>
+        </div>
+        
+        <div id="services">
+          <Services />
+        </div>
+        
+        <div id="projects">
+          <Projects />
+        </div>
+        
+        <div id="about">
+          <About />
+        </div>
+        
+        <div id="contact">
+          <ContactSection />
+        </div>
       </body>
     </html>
   );
