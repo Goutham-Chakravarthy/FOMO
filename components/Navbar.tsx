@@ -57,7 +57,7 @@ const Navbar = () => {
               <PiCirclesThreeFill className="text-3xl lg:text-4xl text-white-400" />
             </Link>
 
-            <Link href="/" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
+            <Link href="/#home" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
               <span>Home</span>
             </Link>
 
@@ -65,15 +65,15 @@ const Navbar = () => {
               <span>Services</span>
             </Link>
 
-            <Link href="/projects" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
+            <Link href="/#projects" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
               <span>Projects</span>
             </Link>
 
-            <Link href="/about" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
+            <Link href="/#about" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
               <span>About</span>
             </Link>
 
-            <Link href="/contact" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
+            <Link href="/#contact" className="hover:text-gray-300 transition-all hover:scale-105 text-sm lg:text-base">
               <span>Contact</span>
             </Link>
           </nav>
@@ -124,7 +124,7 @@ const Navbar = () => {
           <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
             <div className="flex flex-col py-4">
               <Link
-                href="/"
+                href="/#home"
                 onClick={handleLinkClick}
                 className="px-6 py-4 text-white hover:bg-white/10 transition-all active:bg-white/20 text-center text-lg"
               >
@@ -142,7 +142,7 @@ const Navbar = () => {
               <div className="h-px bg-white/10 mx-4" />
               
               <Link
-                href="/projects"
+                href="/#projects"
                 onClick={handleLinkClick}
                 className="px-6 py-4 text-white hover:bg-white/10 transition-all active:bg-white/20 text-center text-lg"
               >
@@ -151,7 +151,7 @@ const Navbar = () => {
               <div className="h-px bg-white/10 mx-4" />
               
               <Link
-                href="/about"
+                href="/#about"
                 onClick={handleLinkClick}
                 className="px-6 py-4 text-white hover:bg-white/10 transition-all active:bg-white/20 text-center text-lg"
               >
@@ -160,7 +160,7 @@ const Navbar = () => {
               <div className="h-px bg-white/10 mx-4" />
               
               <Link
-                href="/contact"
+                href="/#contact"
                 onClick={handleLinkClick}
                 className="px-6 py-4 text-white hover:bg-white/10 transition-all active:bg-white/20 text-center text-lg"
               >

@@ -79,7 +79,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section id="services" className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden scroll-mt-24">
       {/* Background image */}
       <Image
         src="/projects-bg.jpg"

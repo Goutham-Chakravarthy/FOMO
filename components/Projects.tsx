@@ -144,7 +144,7 @@ const products: Product[] = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative bg-black min-h-screen overflow-hidden">
+    <section id="projects" className="relative bg-black min-h-screen overflow-hidden scroll-mt-24">
       <div className="relative">
         <HeroParallax products={products} />
       </div>

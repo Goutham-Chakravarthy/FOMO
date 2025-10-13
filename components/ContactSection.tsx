@@ -20,7 +20,7 @@ export default function ContactSection(): React.JSX.Element {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(1200px_800px_at_80%_-20%,rgba(34,197,94,0.25),transparent),radial-gradient(900px_600px_at_20%_20%,rgba(16,185,129,0.18),transparent),linear-gradient(180deg,#0b0b12,#0a0a0f)]">
+    <section id="contact" className="relative overflow-hidden bg-[radial-gradient(1200px_800px_at_80%_-20%,rgba(34,197,94,0.25),transparent),radial-gradient(900px_600px_at_20%_20%,rgba(16,185,129,0.18),transparent),linear-gradient(180deg,#0b0b12,#0a0a0f)] scroll-mt-24">
       <BeamGridBackground
         gridSize={45}
         gridColor="rgba(255,255,255,0.06)"

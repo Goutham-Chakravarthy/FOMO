@@ -44,7 +44,7 @@ const teamMembers = [
 
 export default function About(): React.JSX.Element {
   return (
-    <section className="bg-black min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+    <section id="about" className="bg-black min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 scroll-mt-24">
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 md:space-y-20">
         {/* Section 1 - Hero */}
         <header className="text-center">
