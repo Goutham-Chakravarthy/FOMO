@@ -64,7 +64,7 @@ export default function ContactSection(): React.JSX.Element {
                 </div>
                 <div className="min-w-0">
                   <div className="text-xs sm:text-sm text-gray-400">Email</div>
-                  <div className="font-medium text-white text-sm sm:text-base truncate">hello@example.com</div>
+                  <div className="font-medium text-white text-sm sm:text-base truncate">fomo@gmail.com</div>
                 </div>
               </a>
 
