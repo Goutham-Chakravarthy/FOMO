@@ -19,11 +19,9 @@ const Navbar = () => {
         window.requestAnimationFrame(() => {
           const delta = currentY - lastYRef.current;
 
-          // If near top, always show
           if (currentY <= 0) {
             setVisible(true);
           } else if (Math.abs(delta) > 6) {
-            // Hide on scroll down, show on scroll up
             setVisible(delta < 0);
           }
 
@@ -38,8 +36,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Ultra smooth scroll with custom easing
-  const smoothScrollTo = (targetPosition: number, duration: number = 1500) => {
+  // Optimized smooth scroll with immediate start
+  const smoothScrollTo = (targetPosition: number, duration: number = 1200) => {
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     let startTime: number | null = null;
@@ -66,9 +64,10 @@ const Navbar = () => {
     requestAnimationFrame(animation);
   };
 
-  // Smooth scroll handler
+  // Improved smooth scroll handler with immediate execution
   const handleSmoothScroll = (e: React.MouseEvent<HTMLButtonElement>, sectionId: string) => {
     e.preventDefault();
+    e.stopPropagation();
     setMobileMenuOpen(false);
     
     const element = document.getElementById(sectionId);
@@ -76,8 +75,8 @@ const Navbar = () => {
       const navbarHeight = 120;
       const targetPosition = element.offsetTop - navbarHeight;
       
-      // Use custom smooth scroll with 1.5 second duration
-      smoothScrollTo(targetPosition, 1500);
+      // Immediately start the smooth scroll
+      smoothScrollTo(targetPosition, 1200);
     }
   };
 

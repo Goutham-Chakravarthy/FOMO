@@ -139,6 +139,7 @@
   }
 }
 
+/* FIXED: Changed from 'smooth' to 'auto' to prevent conflict with custom JS smooth scroll */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
