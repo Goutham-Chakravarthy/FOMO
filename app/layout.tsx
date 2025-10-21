@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
+import Testimonials from "@/components/Testimonials";
 import ContactSection from "@/components/ContactSection";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,6 +43,10 @@ export default function RootLayout({
         
         <div id="about">
           <About />
+        </div>
+        
+        <div id="testimonials">
+          <Testimonials />
         </div>
         
         <div id="contact">
