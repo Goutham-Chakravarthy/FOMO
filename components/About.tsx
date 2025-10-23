@@ -11,66 +11,63 @@ interface StatItem {
 
 // Data: Stats
 const stats: StatItem[] = [
-  { value: "5+", label: "Years Experience" },
-  { value: "100+", label: "Projects Completed" },
+  { value: "3+", label: "Years Experience" },
+  { value: "30+", label: "Projects Completed" },
   { value: "50+", label: "Happy Clients" },
-  { value: "10+", label: "Team Members" },
+  { value: "3", label: "Team Members" },
 ];
 
 // Data: Team (AnimatedTooltip format)
 const teamMembers = [
   {
     id: 1,
-    name: "Alex Chen",
+    name: "Byte",
     designation: "Lead Developer",
-    image:
-      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&h=400&fit=crop",
+    image: "/byte.jpg",
   },
   {
     id: 2,
-    name: "Sarah Johnson",
+    name: "Data",
     designation: "UI/UX Designer",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+    image: "/data.jpg",
   },
   {
     id: 3,
-    name: "Mike Rodriguez",
+    name: "Pixel",
     designation: "DevOps Engineer",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    image: "/pixel.jpg",
   },
 ];
 
 export default function About(): React.JSX.Element {
   return (
-    <section id="about" className="bg-black min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 scroll-mt-24">
-      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 md:space-y-20">
+    <section id="about" className="bg-black min-h-screen pt-0 pb-12 sm:pb-16 md:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8 scroll-mt-16 sm:scroll-mt-20 md:scroll-mt-24">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-14 md:space-y-16 lg:space-y-20">
         {/* Section 1 - Hero */}
         <header className="text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-mono text-green-400 mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-mono text-green-400 mb-3 sm:mb-4 md:mb-6">
             $ whoami
           </h1>
-          <p className="text-gray-400 text-sm sm:text-base md:text-lg text-center max-w-3xl mx-auto mb-12 sm:mb-14 md:mb-16 px-2">
-            We are a team of passionate developers and designers dedicated to building cutting-edge digital solutions. With expertise spanning web development, mobile apps, and cloud infrastructure, we transform ideas into reality. Our mission is to deliver innovative, scalable, and user-centric products that drive business growth.
+          <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed text-pretty max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-14 lg:mb-16 px-2 sm:px-4 md:px-0">
+            We are a team of three passionate student developers who have faced the stress of tight deadlines and heavy workloads ourselves. With hands-on experience in web development, mobile apps, cloud infrastructure, AI, ML, data analytics, UI, and Next.js, we understand the challenges students encounter. Having lived through late-night study sessions, we founded FOMO to support our peers with reliable, affordable academic solutions. Our mission is to deliver high-quality projects, reports, and presentations that ease the burden and help students succeed.
           </p>
         </header>
 
         {/* Section 2 - Stats */}
         <section>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white text-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
             Our Impact
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 mb-10 sm:mb-12 md:mb-16 lg:mb-20">
             {stats.map((item) => (
               <div
                 key={item.label}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center hover:scale-105 hover:bg-white/15 transition-all duration-300"
+                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 text-center hover:scale-105 hover:bg-white/15 transition-all duration-300 shadow-lg"
               >
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-400 mb-1 sm:mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-green-400 mb-1 sm:mb-1.5 md:mb-2">
                   {item.value}
                 </div>
-                <div className="text-gray-400 text-sm sm:text-base md:text-lg">
+                <div className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg">
                   {item.label}
                 </div>
               </div>
@@ -80,10 +77,10 @@ export default function About(): React.JSX.Element {
 
         {/* Section 3 - Team with Animated Tooltip */}
         <section>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white text-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
             Meet Our Team
           </h2>
-          <div className="flex justify-center items-center mb-12 sm:mb-16 md:mb-20">
+          <div className="flex justify-center items-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
             <AnimatedTooltip items={teamMembers} />
           </div>
         </section>

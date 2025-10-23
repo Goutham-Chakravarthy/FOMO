@@ -144,7 +144,7 @@ const products: Product[] = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative bg-black min-h-screen overflow-hidden scroll-mt-24">
+    <section id="projects" className="relative bg-black min-h-screen overflow-hidden scroll-mt-16 sm:scroll-mt-20 md:scroll-mt-24">
       <div className="relative">
         <HeroParallax products={products} />
       </div>
@@ -168,12 +168,35 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
+  // Responsive values computed on client safely
+  const [shift, setShift] = React.useState(1000);
+  const [shiftNeg, setShiftNeg] = React.useState(-1000);
+  const [shiftYStart, setShiftYStart] = React.useState(-700);
+  const [shiftYEnd, setShiftYEnd] = React.useState(500);
+
+  React.useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      const isSm = w < 640;
+      const isMd = w < 1024;
+      const x = isSm ? 400 : isMd ? 700 : 1000;
+      setShift(x);
+      setShiftNeg(-x);
+      setShiftYStart(isSm ? -400 : -700);
+      setShiftYEnd(isSm ? 300 : 500);
+    };
+    compute();
+    window.addEventListener('resize', compute);
+    return () => window.removeEventListener('resize', compute);
+  }, []);
+
+  // Responsive translation values - reduced movement on mobile
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 1000]),
+    useTransform(scrollYProgress, [0, 1], [0, shift]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -1000]),
+    useTransform(scrollYProgress, [0, 1], [0, shiftNeg]),
     springConfig
   );
   const rotateX = useSpring(
@@ -189,13 +212,13 @@ export const HeroParallax = ({
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    useTransform(scrollYProgress, [0, 0.2], [shiftYStart, shiftYEnd]),
     springConfig
   );
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-24 md:py-40 overflow-hidden antialiased relative flex flex-col [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[250vh] sm:h-[280vh] md:h-[300vh] py-16 sm:py-20 md:py-24 lg:py-40 overflow-hidden antialiased relative flex flex-col [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -206,17 +229,17 @@ export const HeroParallax = ({
           opacity,
         }}
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 md:space-x-20 mb-12 md:mb-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-4 sm:space-x-6 md:space-x-10 lg:space-x-20 mb-8 sm:mb-10 md:mb-12 lg:mb-20">
           {firstRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row mb-12 md:mb-20 space-x-10 md:space-x-20">
+        <motion.div className="flex flex-row mb-8 sm:mb-10 md:mb-12 lg:mb-20 space-x-4 sm:space-x-6 md:space-x-10 lg:space-x-20">
           {secondRow.map((product) => (
             <ProductCard product={product} translate={translateXReverse} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 md:space-x-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-4 sm:space-x-6 md:space-x-10 lg:space-x-20">
           {thirdRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
@@ -228,11 +251,11 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-32 px-4 w-full left-0 top-0">
-      <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-green-400 font-mono">
+    <div className="max-w-7xl relative mx-auto py-12 sm:py-16 md:py-20 lg:py-32 px-4 sm:px-6 w-full left-0 top-0">
+      <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-green-400 font-mono">
         <span className="text-gray-400">$</span> projects --showcase
       </h1>
-      <p className="max-w-2xl text-sm sm:text-base md:text-xl mt-6 md:mt-8 text-neutral-200">
+      <p className="max-w-2xl text-xs sm:text-sm md:text-base lg:text-xl mt-4 sm:mt-5 md:mt-6 lg:mt-8 text-neutral-200">
         A curated parallax of recent builds across web, AI, DevOps, and data platforms.
       </p>
     </div>
@@ -246,29 +269,49 @@ export const ProductCard = ({
   product: Product;
   translate: MotionValue<number>;
 }) => {
+  const isDisabled = !product.link || product.link === "#";
   return (
     <motion.div
       style={{ x: translate }}
       whileHover={{ y: -20 }}
       key={product.title}
-      className="group/product h-72 sm:h-80 md:h-96 w-[18rem] sm:w-[24rem] md:w-[30rem] relative shrink-0 rounded-xl overflow-hidden"
+      className="group/product h-56 sm:h-64 md:h-80 lg:h-96 w-56 sm:w-72 md:w-80 lg:w-[30rem] relative shrink-0 rounded-lg sm:rounded-xl overflow-hidden"
     >
-      <a href={product.link} className="block group-hover/product:shadow-2xl">
-        <img
-          src={product.thumbnail}
-          height={600}
-          width={600}
-          className="object-cover object-center absolute h-full w-full inset-0"
-          alt={product.title}
-          loading="lazy"
-        />
-      </a>
-      {/* Top-left description (3 lines) shown on hover */}
-      <div className="absolute top-4 left-4 right-6 z-10 text-white/90 text-xs sm:text-sm md:text-base font-medium whitespace-pre-line opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 [text-shadow:0_1px_2px_rgba(0,0,0,0.6)]">
+      {isDisabled ? (
+        <div className="block group-hover/product:shadow-2xl" role="button" aria-disabled="true">
+          <img
+            src={product.thumbnail}
+            height={600}
+            width={600}
+            className="object-cover object-center absolute h-full w-full inset-0"
+            alt={product.title}
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <a
+          href={product.link}
+          className="block group-hover/product:shadow-2xl"
+          onClick={(e) => {
+            if (product.link === "#") e.preventDefault();
+          }}
+        >
+          <img
+            src={product.thumbnail}
+            height={600}
+            width={600}
+            className="object-cover object-center absolute h-full w-full inset-0"
+            alt={product.title}
+            loading="lazy"
+          />
+        </a>
+      )}
+      {/* Top-left description shown on hover */}
+      <div className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 right-3 sm:right-4 md:right-6 z-10 text-white/90 text-[10px] sm:text-xs md:text-sm lg:text-base font-medium whitespace-pre-line opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 [text-shadow:0_1px_2px_rgba(0,0,0,0.6)]">
         {product.description}
       </div>
       <div className="absolute inset-0 h-full w-full z-0 opacity-0 group-hover/product:opacity-80 bg-black transition-opacity duration-300 pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 z-10 opacity-0 group-hover/product:opacity-100 text-white font-semibold">
+      <h2 className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-2 sm:left-3 md:left-4 z-10 opacity-0 group-hover/product:opacity-100 text-white font-semibold text-xs sm:text-sm md:text-base lg:text-lg">
         {product.title}
       </h2>
     </motion.div>

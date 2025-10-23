@@ -5,6 +5,7 @@ npm i lightswind@latest*/
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import styles from "./beam-grid-background.module.css";
 
 export interface BeamGridBackgroundProps extends React.HTMLProps<HTMLDivElement> {
     gridSize?: number;
@@ -75,32 +76,48 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
         if (!canvas || !container) return;
 
         const ctx = canvas.getContext("2d")!;
-        const rect = container.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
 
-        const cols = Math.floor(rect.width / gridSize);
-        const rows = Math.floor(rect.height / gridSize);
+        let allBeams: Array<{
+            x: number;
+            y: number;
+            dir: "x" | "y";
+            offset: number;
+            speed: number;
+            type: "primary" | "extra";
+        }> = [];
 
-        const primaryBeams = Array.from({ length: beamCount }).map(() => ({
-            x: Math.floor(Math.random() * cols),
-            y: Math.floor(Math.random() * rows),
-            dir: (Math.random() > 0.5 ? "x" : "y") as "x" | "y",
-            offset: Math.random() * gridSize,
-            speed: beamSpeed + Math.random() * 0.3,
-            type: "primary",
-        }));
+        const initScene = () => {
+            const rect = container.getBoundingClientRect();
+            const width = Math.max(1, Math.floor(rect.width));
+            const height = Math.max(1, Math.floor(rect.height));
+            if (canvas.width !== width || canvas.height !== height) {
+                canvas.width = width;
+                canvas.height = height;
+            }
 
-        const extraBeams = Array.from({ length: extraBeamCount }).map(() => ({
-            x: Math.floor(Math.random() * cols),
-            y: Math.floor(Math.random() * rows),
-            dir: (Math.random() > 0.5 ? "x" : "y") as "x" | "y",
-            offset: Math.random() * gridSize,
-            speed: beamSpeed * 0.5 + Math.random() * 0.1,
-            type: "extra",
-        }));
+            const cols = Math.max(1, Math.floor(width / gridSize));
+            const rows = Math.max(1, Math.floor(height / gridSize));
 
-        const allBeams = [...primaryBeams, ...extraBeams];
+            const primaryBeams = Array.from({ length: beamCount }).map(() => ({
+                x: Math.floor(Math.random() * cols),
+                y: Math.floor(Math.random() * rows),
+                dir: (Math.random() > 0.5 ? "x" : "y") as "x" | "y",
+                offset: Math.random() * gridSize,
+                speed: beamSpeed + Math.random() * 0.3,
+                type: "primary" as const,
+            }));
+
+            const extraBeams = Array.from({ length: extraBeamCount }).map(() => ({
+                x: Math.floor(Math.random() * cols),
+                y: Math.floor(Math.random() * rows),
+                dir: (Math.random() > 0.5 ? "x" : "y") as "x" | "y",
+                offset: Math.random() * gridSize,
+                speed: beamSpeed * 0.5 + Math.random() * 0.1,
+                type: "extra" as const,
+            }));
+
+            allBeams = [...primaryBeams, ...extraBeams];
+        };
 
         const updateMouse = (e: MouseEvent) => {
             const rect = container.getBoundingClientRect();
@@ -111,24 +128,27 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
 
         if (interactive) window.addEventListener("mousemove", updateMouse);
 
+        let rafId = 0;
         const draw = () => {
-            ctx.clearRect(0, 0, rect.width, rect.height);
+            const width = canvas.width;
+            const height = canvas.height;
+            ctx.clearRect(0, 0, width, height);
 
             const lineColor = isDarkMode ? darkGridColor : gridColor;
             const activeBeamColor = isDarkMode ? darkBeamColor : beamColor;
 
             ctx.strokeStyle = lineColor;
             ctx.lineWidth = 1;
-            for (let x = 0; x <= rect.width; x += gridSize) {
+            for (let x = 0; x <= width; x += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
-                ctx.lineTo(x, rect.height);
+                ctx.lineTo(x, height);
                 ctx.stroke();
             }
-            for (let y = 0; y <= rect.height; y += gridSize) {
+            for (let y = 0; y <= height; y += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
-                ctx.lineTo(rect.width, y);
+                ctx.lineTo(width, y);
                 ctx.stroke();
             }
 
@@ -150,25 +170,25 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
                 if (beam.dir === "x") {
                     const y = beam.y * gridSize;
                     const beamLength = gridSize * 1.5;
-                    const start = -beamLength + (beam.offset % (rect.width + beamLength));
+                    const start = -beamLength + (beam.offset % (width + beamLength));
 
                     ctx.moveTo(start, y);
                     ctx.lineTo(start + beamLength, y);
                     ctx.stroke();
 
                     beam.offset += idle ? beam.speed * idleSpeed * 60 : beam.speed * 60;
-                    if (beam.offset > rect.width + beamLength) beam.offset = -beamLength;
+                    if (beam.offset > width + beamLength) beam.offset = -beamLength;
                 } else {
                     const x = beam.x * gridSize;
                     const beamLength = gridSize * 1.5;
-                    const start = -beamLength + (beam.offset % (rect.height + beamLength));
+                    const start = -beamLength + (beam.offset % (height + beamLength));
 
                     ctx.moveTo(x, start);
                     ctx.lineTo(x, start + beamLength);
                     ctx.stroke();
 
                     beam.offset += idle ? beam.speed * idleSpeed * 60 : beam.speed * 60;
-                    if (beam.offset > rect.height + beamLength) beam.offset = -beamLength;
+                    if (beam.offset > height + beamLength) beam.offset = -beamLength;
                 }
             });
 
@@ -200,7 +220,7 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
                             const cellX = x + dx * gridSize;
                             const cellY = y + dy * gridSize;
 
-                            if (cellX >= 0 && cellX < rect.width && cellY >= 0 && cellY < rect.height) {
+                            if (cellX >= 0 && cellX < width && cellY >= 0 && cellY < height) {
                                 ctx.beginPath();
                                 ctx.rect(cellX, cellY, gridSize, gridSize);
                                 ctx.stroke();
@@ -210,13 +230,21 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
                 });
             }
 
-            requestAnimationFrame(draw);
+            rafId = requestAnimationFrame(draw);
         };
 
+        initScene();
         draw();
+
+        const ro = new ResizeObserver(() => {
+            initScene();
+        });
+        ro.observe(container);
 
         return () => {
             if (interactive) window.removeEventListener("mousemove", updateMouse);
+            ro.disconnect();
+            cancelAnimationFrame(rafId);
         };
     }, [
         gridSize,
@@ -235,20 +263,23 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
         interactive,
     ]);
 
+    // Prevent passing inline styles to avoid lint warnings
+    const { style: _ignoredStyle, ...restProps } = props as any;
+
+    // Compute mask class based on fadeIntensity rounded to nearest 10
+    const clamped = Math.max(0, Math.min(100, Math.round(fadeIntensity)));
+    const decile = Math.round(clamped / 10) * 10;
+    const fadeClass = (styles as Record<string, string>)[`maskFade${decile}`] || "";
+
+    // Container classes instead of inline style (do not override absolute with a trailing relative)
+    const positionClass = asBackground ? "absolute top-0 left-0 w-full h-full" : "relative w-full h-full";
+    const containerClass = `${positionClass} overflow-hidden ${className || ""}`;
+
     return (
         <div
             ref={containerRef}
-            className={`relative ${className || ""}`}
-            {...props}
-            style={{
-                position: asBackground ? "absolute" : "relative",
-                top: asBackground ? 0 : undefined,
-                left: asBackground ? 0 : undefined,
-                width: "100%",
-                height: "100%",
-                overflow: "hidden",
-                ...(props.style || {}),
-            }}
+            className={containerClass}
+            {...restProps}
         >
             <canvas
                 ref={canvasRef}
@@ -257,11 +288,7 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
 
             {showFade && (
                 <div
-                    className="pointer-events-none absolute inset-0 bg-white dark:bg-black"
-                    style={{
-                        maskImage: `radial-gradient(ellipse at center, transparent ${fadeIntensity}%, black)`,
-                        WebkitMaskImage: `radial-gradient(ellipse at center, transparent ${fadeIntensity}%, black)`,
-                    }}
+                    className={`pointer-events-none absolute inset-0 bg-white dark:bg-black ${fadeClass}`}
                 />
             )}
 

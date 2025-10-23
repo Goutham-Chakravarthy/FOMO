@@ -1,0 +1,45 @@
+/* Predefined mask classes to avoid inline styles */
+.mask-fade-0 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 0%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 0%, black);
+}
+.mask-fade-10 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 10%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 10%, black);
+}
+.mask-fade-20 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 20%, black);
+}
+.mask-fade-30 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 30%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 30%, black);
+}
+.mask-fade-40 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 40%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 40%, black);
+}
+.mask-fade-50 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 50%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 50%, black);
+}
+.mask-fade-60 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 60%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 60%, black);
+}
+.mask-fade-70 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 70%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 70%, black);
+}
+.mask-fade-80 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 80%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 80%, black);
+}
+.mask-fade-90 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 90%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 90%, black);
+}
+.mask-fade-100 {
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 100%, black);
+  mask-image: radial-gradient(ellipse at center, transparent 100%, black);
+}

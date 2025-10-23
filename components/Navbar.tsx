@@ -36,6 +36,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const el = document.getElementById("contact");
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry.isIntersecting && window.location.hash === "#contact") {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   // Optimized smooth scroll with immediate start
   const smoothScrollTo = (targetPosition: number, duration: number = 1200) => {
     const startPosition = window.pageYOffset;
@@ -93,6 +109,8 @@ const Navbar = () => {
             <button 
               onClick={(e) => handleSmoothScroll(e, "home")}
               className="hover:scale-110 transition-transform"
+              aria-label="Home"
+              title="Home"
             >
               <PiCirclesThreeFill className="text-3xl lg:text-4xl text-white-400" />
             </button>
@@ -138,6 +156,8 @@ const Navbar = () => {
             <button 
               onClick={(e) => handleSmoothScroll(e, "home")}
               className="hover:scale-110 transition-transform"
+              aria-label="Home"
+              title="Home"
             >
               <PiCirclesThreeFill className="text-3xl text-white-400" />
             </button>

@@ -19,12 +19,12 @@ interface AnimatedTooltipProps {
 // - Uses Tailwind for transitions
 export const AnimatedTooltip: React.FC<AnimatedTooltipProps> = ({ items }) => {
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-10">
       {items.map((item) => (
-        <div key={item.id} className="relative group">
+        <div key={item.id} className="relative group flex flex-col items-center">
           {/* Avatar */}
           <div
-            className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-white/20 shadow-lg bg-white/5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-105"
+            className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-full overflow-hidden ring-2 ring-white/20 shadow-lg bg-white/5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-105"
           >
             <img
               src={item.image}
@@ -32,6 +32,12 @@ export const AnimatedTooltip: React.FC<AnimatedTooltipProps> = ({ items }) => {
               className="w-full h-full object-cover"
               loading="lazy"
             />
+          </div>
+
+          {/* Caption below avatar */}
+          <div className="mt-2 text-center">
+            <div className="text-white text-base font-medium leading-tight">{item.name}</div>
+            <div className="text-green-400 text-sm">{item.designation}</div>
           </div>
 
           {/* Tooltip */}

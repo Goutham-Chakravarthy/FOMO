@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, animate, useMotionValue } from "framer-motion";
 import { User } from "lucide-react";
 
 interface Testimonial {
@@ -63,29 +63,21 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-function TestimonialCard({ testimonial, onHoverStart, onHoverEnd }: {
-  testimonial: Testimonial;
-  onHoverStart: () => void;
-  onHoverEnd: () => void;
-}) {
+function TestimonialCard({ testimonial, onHoverStart, onHoverEnd }: { testimonial: Testimonial; onHoverStart?: () => void; onHoverEnd?: () => void; }) {
   return (
-    <div
-      className="w-[500px] shrink-0 mr-10 p-2"
-      onMouseEnter={onHoverStart}
-      onMouseLeave={onHoverEnd}
-    >
-      <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 min-h-[240px] shadow-2xl hover:bg-white/15 hover:scale-105 hover:shadow-green-400/10 transition-all duration-300">
+    <div className="w-[280px] sm:w-[380px] md:w-[450px] lg:w-[500px] shrink-0 mr-4 sm:mr-6 md:mr-8 lg:mr-10 p-2" onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}>
+      <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-5 sm:p-6 md:p-8 min-h-[220px] sm:min-h-[230px] md:min-h-[240px] shadow-2xl hover:bg-white/15 hover:scale-105 hover:shadow-green-400/10 transition-all duration-300">
         <div className="flex items-center">
-          <div className="bg-green-400/10 p-3 rounded-full">
-            <User className="w-8 h-8 text-green-400" />
+          <div className="bg-green-400/10 p-2 sm:p-3 rounded-full">
+            <User className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-green-400" />
           </div>
-          <div className="ml-4">
-            <div className="text-white font-semibold text-lg">{testimonial.name}</div>
-            <div className="text-green-400 text-sm">{testimonial.college}</div>
+          <div className="ml-3 sm:ml-4">
+            <div className="text-white font-semibold text-base sm:text-lg">{testimonial.name}</div>
+            <div className="text-green-400 text-xs sm:text-sm">{testimonial.college}</div>
           </div>
         </div>
-        <div className="mt-4">
-          <p className="text-gray-400 text-sm leading-relaxed line-clamp-6">
+        <div className="mt-3 sm:mt-4">
+          <p className="text-gray-400 text-xs sm:text-sm leading-relaxed line-clamp-6">
             {testimonial.feedback}
           </p>
         </div>
@@ -95,52 +87,80 @@ function TestimonialCard({ testimonial, onHoverStart, onHoverEnd }: {
 }
 
 export default function Testimonials(): React.JSX.Element {
-  const controls = useAnimation();
-
-  const CARD_TOTAL_WIDTH = 500 + 40; // w-[500px] + mr-10 (40px)
-  const totalWidth = testimonials.length * CARD_TOTAL_WIDTH;
+  const CARD_WIDTH_MOBILE = 280 + 16; // w-[280px] + mr-4 (16px)
+  const CARD_WIDTH_SM = 380 + 24; // w-[380px] + mr-6 (24px)
+  const CARD_WIDTH_MD = 450 + 32; // w-[450px] + mr-8 (32px)
+  const CARD_WIDTH_LG = 500 + 40; // w-[500px] + mr-10 (40px)
+  
+  const [cardWidth, setCardWidth] = React.useState(CARD_WIDTH_LG);
+  
+  React.useEffect(() => {
+    const updateWidth = () => {
+      if (window.innerWidth < 640) {
+        setCardWidth(CARD_WIDTH_MOBILE);
+      } else if (window.innerWidth < 768) {
+        setCardWidth(CARD_WIDTH_SM);
+      } else if (window.innerWidth < 1024) {
+        setCardWidth(CARD_WIDTH_MD);
+      } else {
+        setCardWidth(CARD_WIDTH_LG);
+      }
+    };
+    
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+  
+  const totalWidth = testimonials.length * cardWidth;
   const doubled = [...testimonials, ...testimonials];
 
+  // Motion value for smooth, controllable marquee
+  const x = useMotionValue(0);
+  const animRef = React.useRef<ReturnType<typeof animate> | null>(null);
+
+  // Adjust duration based on screen size for consistent speed
+  const duration = typeof window !== "undefined" && window.innerWidth < 640 ? 25 : typeof window !== "undefined" && window.innerWidth < 768 ? 30 : 35;
+
+  const startAnimation = React.useCallback((from?: number) => {
+    const start = typeof from === "number" ? from : x.get();
+    // Normalize start within one loop for numerical stability
+    const normalizedStart = ((start % -totalWidth) + -totalWidth) % -totalWidth;
+    x.set(normalizedStart);
+    animRef.current = animate(x, [normalizedStart, normalizedStart - totalWidth], {
+      duration,
+      ease: "linear",
+      repeat: Infinity,
+      repeatType: "loop",
+    });
+  }, [x, totalWidth, duration]);
+
   React.useEffect(() => {
-    controls.start({
-      x: [0, -totalWidth],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 35,
-          ease: "linear",
-        },
-      },
-    });
-  }, [controls, totalWidth]);
+    // Start or restart animation when sizes change
+    animRef.current?.stop();
+    startAnimation(0);
+    return () => {
+      animRef.current?.stop();
+    };
+  }, [totalWidth, startAnimation]);
 
-  const handleHoverStart = () => {
-    controls.stop();
-  };
+  const handleHoverStart = React.useCallback(() => {
+    animRef.current?.stop();
+    animRef.current = null;
+  }, []);
 
-  const handleHoverEnd = () => {
-    controls.start({
-      x: [undefined as unknown as number, -totalWidth],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 35,
-          ease: "linear",
-        },
-      },
-    });
-  };
+  const handleHoverEnd = React.useCallback(() => {
+    startAnimation(x.get());
+  }, [startAnimation, x]);
 
   return (
-    <section id="testimonials" className="w-full bg-black py-20 overflow-hidden">
+    <section id="testimonials" className="w-full bg-black py-12 sm:py-16 md:py-20 overflow-hidden">
       {/* Header - Centered with max-width */}
-      <div className="max-w-4xl mx-auto px-6 text-center mb-16">
-        <h2 className="text-5xl md:text-6xl font-bold font-mono text-green-400">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-10 sm:mb-12 md:mb-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-mono text-green-400">
           $ feedback --latest
         </h2>
-        <p className="text-gray-400 text-lg mt-3">
+        <p className="text-gray-400 text-sm sm:text-base md:text-lg mt-2 sm:mt-3">
           What college students say about our work
         </p>
       </div>
@@ -148,12 +168,17 @@ export default function Testimonials(): React.JSX.Element {
       {/* Full-width carousel with fade effects */}
       <div className="relative overflow-hidden">
         {/* Left fade gradient */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
         
         {/* Right fade gradient */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         
-        <motion.div className="flex" animate={controls} role="list">
+        <motion.div
+          className="flex"
+          role="list"
+          style={{ willChange: 'transform', x }}
+          key={totalWidth}
+        >
           {doubled.map((t, i) => (
             <TestimonialCard
               key={`${t.id}-${i}`}
