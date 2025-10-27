@@ -25,33 +25,44 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${inter.className} antialiased`}
+        className={`${inter.className} antialiased min-h-screen flex flex-col bg-black`}
       >
         <Navbar />
-        
-        <div id="home">
-          <AuroraBackground>{children}</AuroraBackground>
-        </div>
-        
-        <div id="services">
-          <Services />
-        </div>
-        
-        <div id="projects">
-          <Projects />
-        </div>
-        
-        <div id="about">
-          <About />
-        </div>
-        
-        <div id="testimonials">
-          <Testimonials />
-        </div>
-        
-        <div id="contact">
-          <ContactSection />
-        </div>
+
+        <main className="flex-1">
+          <div id="home">
+            <AuroraBackground>{children}</AuroraBackground>
+          </div>
+
+          <div id="services">
+            <Services />
+          </div>
+
+          <div id="projects">
+            <Projects />
+          </div>
+
+          <div id="about">
+            <About />
+          </div>
+
+          <div id="testimonials">
+            <Testimonials />
+          </div>
+
+          <div id="contact">
+            <ContactSection />
+          </div>
+        </main>
+
+        {/* Copyright Notice */}
+        <footer className="bg-[#0a0a0f] border-t border-white/5">
+          <div className="text-center py-6">
+            <p className="text-sm text-gray-400">
+              &copy; {new Date().getFullYear()} FOMO. All Rights Reserved.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );

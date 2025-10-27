@@ -154,7 +154,7 @@ export default function Testimonials(): React.JSX.Element {
   }, [startAnimation, x]);
 
   return (
-    <section id="testimonials" className="w-full bg-black py-12 sm:py-16 md:py-20 overflow-hidden">
+    <section id="testimonials" className="w-full bg-black pt-0 pb-12 sm:pb-16 md:pb-20 overflow-hidden">
       {/* Header - Centered with max-width */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-10 sm:mb-12 md:mb-16">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-mono text-green-400">
