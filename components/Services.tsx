@@ -110,7 +110,7 @@ const Services = () => {
       icon: <Terminal className="size-6 sm:size-7 md:size-8 text-green-400" />,
       longDescription:
         "Full-scale project delivery: requirement analysis and scoping, architecture design, tech stack selection, iterative development with milestones, and version control best practices. Includes feature implementation, unit/integration testing, basic performance checks, and demo-ready builds. Optional add-ons: detailed academic report (abstract, literature review, methodology, results, discussion, conclusion), presentation deck tailored for viva/defense, deployment support (cloud or local), and live knowledge transfer sessions with code walkthrough and Q&A to help you present and defend effectively.",
-      cost: "₹5,000 per project (extra charges for PPT, report, and knowledge transfer)",
+      cost: "₹8,000 per project (extra charges for PPT, report, and knowledge transfer)",
     },
     {
       id: 3,
@@ -130,7 +130,7 @@ const Services = () => {
       icon: <Users className="size-6 sm:size-7 md:size-8 text-green-400" />,
       longDescription:
         "End-to-end mini projects with implementation, basic documentation, and run instructions. Optional additions: detailed report, presentation deck, and live knowledge transfer session to help you present and defend.",
-      cost: "₹1,000 per project (extra charges for report, PPT, and knowledge transfer)",
+      cost: "₹2,000 per project (extra charges for report, PPT, and knowledge transfer)",
     }
   ];
 

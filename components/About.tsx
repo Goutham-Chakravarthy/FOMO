@@ -49,7 +49,7 @@ export default function About(): React.JSX.Element {
             $ whoami
           </h1>
           <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed text-pretty max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-14 lg:mb-16 px-2 sm:px-4 md:px-0">
-            We are a team of three passionate student developers who have faced the stress of tight deadlines and heavy workloads ourselves. With hands-on experience in web development, mobile apps, cloud infrastructure, AI, ML, data analytics, UI, and Next.js, we understand the challenges students encounter. Having lived through late-night study sessions, we founded FOMO to support our peers with reliable, affordable academic solutions. Our mission is to deliver high-quality projects, reports, and presentations that ease the burden and help students succeed.
+            We’re a team of three student developers with experience across web, mobile, cloud, AI/ML, data, UI, and Next.js. We started FOMO to help students with reliable and affordable academic solutions delivering quality projects, reports, and presentations on time.
           </p>
         </header>
 

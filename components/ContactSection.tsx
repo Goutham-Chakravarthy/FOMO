@@ -1,14 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, MessageCircle } from "lucide-react";
 import BeamGridBackground from "@/components/ui/beam-grid-background";
 
-export default function ContactSection(): React.JSX.Element {
+export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  // WhatsApp configuration
+  const WHATSAPP_NUMBER = "918095534884"; // Your WhatsApp number (with country code, no + or spaces)
+  const WHATSAPP_MESSAGE = "Hi! I'm interested in discussing a project."; // Default message
+
+  const handleWhatsAppClick = () => {
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+    window.open(url, '_blank');
+  };
+
+  /* FORM SUBMISSION HANDLER - COMMENTED OUT
+  async function onSubmit(e) {
     e.preventDefault();
     if (loading) return;
     setLoading(true);
@@ -16,8 +26,9 @@ export default function ContactSection(): React.JSX.Element {
     setLoading(false);
     setSuccess(true);
     setTimeout(() => setSuccess(false), 2500);
-    (e.currentTarget as HTMLFormElement).reset();
+    e.currentTarget.reset();
   }
+  */
 
   return (
     <section id="contact" className="relative overflow-hidden bg-[radial-gradient(1200px_800px_at_80%_-20%,rgba(34,197,94,0.25),transparent),radial-gradient(900px_600px_at_20%_20%,rgba(16,185,129,0.18),transparent),linear-gradient(180deg,#0b0b12,#0a0a0f)] scroll-mt-24">
@@ -98,6 +109,42 @@ export default function ContactSection(): React.JSX.Element {
               <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10" />
               <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10" />
 
+              {/* WHATSAPP CONTACT SECTION */}
+              <div className="relative space-y-6 text-center">
+                <div className="flex justify-center">
+                  <div className="rounded-full bg-green-500/15 p-3">
+                    <img 
+                      src="/FOMO.jpg" 
+                      alt="FOMO Logo" 
+                      className="w-40 h-40 rounded-full object-cover"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Chat with us on WhatsApp</h3>
+                  <p className="text-gray-300 text-sm">
+                    Get instant responses to your queries. Click below to start a conversation.
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleWhatsAppClick}
+                  className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-green-600 via-emerald-600 to-lime-600 px-4 sm:px-5 py-3 sm:py-4 text-base font-medium text-white shadow-lg transition hover:from-green-500 hover:to-lime-500 focus:outline-none focus:ring-2 focus:ring-white/20"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    <MessageCircle size={20} />
+                    Message on WhatsApp
+                  </span>
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-0" />
+                </button>
+
+                <p className="text-center text-xs text-gray-400">
+                  Available 24/7 • We typically respond within minutes
+                </p>
+              </div>
+
+              {/* ORIGINAL FORM - COMMENTED OUT
               <form onSubmit={onSubmit} className="relative space-y-3 sm:space-y-4">
                 <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2">
                   <div>
@@ -171,9 +218,11 @@ export default function ContactSection(): React.JSX.Element {
                   We typically respond within 1 business day.
                 </p>
               </form>
+              */}
             </div>
           </div>
         </div>
+      
       </div>
     </section>
   );
