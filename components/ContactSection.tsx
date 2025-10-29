@@ -67,7 +67,7 @@ export default function ContactSection() {
 
             <div className="mt-8 sm:mt-10 grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-3">
               <a
-                href="mailto:hello@example.com"
+                href="mailto:fomoagency@zohomail.in"
                 className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 sm:p-4 text-sm text-gray-200 transition hover:border-green-400/30 hover:bg-white/10 backdrop-blur"
               >
                 <div className="rounded-lg bg-green-500/15 p-2 text-green-300 transition group-hover:bg-green-500/25 flex-shrink-0">
