@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Code, Smartphone, Terminal, Users } from 'lucide-react';
 import { CardSpotlight } from '@/components/ui/card-spotlight';
+import { Button } from '@/components/ui/moving-border';
 import Image from 'next/image';
 
 // TypeScript interface for service data
@@ -294,9 +295,14 @@ const Services = () => {
               <p className="text-gray-300 mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed">
                 {selectedService.longDescription}
               </p>
-              <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between">
+              <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <span className="text-green-400 font-mono text-sm sm:text-base">Cost: {selectedService.cost}</span>
-                <button
+                <Button
+                  borderRadius="1.75rem"
+                  className="bg-black/80 backdrop-blur-xl text-green-400 border border-green-400/20 font-mono hover:bg-black/60 transition-colors"
+                  containerClassName="h-12 w-full sm:w-36"
+                  borderClassName="bg-[radial-gradient(#10b981_40%,transparent_60%)]"
+                  duration={3000}
                   onClick={() => {
                     const el = document.getElementById('contact');
                     if (el) {
@@ -306,11 +312,9 @@ const Services = () => {
                     }
                     setSelectedService(null);
                   }}
-                  className="bg-white/10 backdrop-blur-lg border border-green-400/30 rounded-full px-4 sm:px-6 py-2 text-green-400 hover:border-green-400 hover:bg-green-400/10 transition-all duration-300 font-mono text-sm animate-bounce"
-                  aria-label="Order Now and scroll to Contact section"
                 >
                   Order Now
-                </button>
+                </Button>
               </div>
             </div>
           </div>
