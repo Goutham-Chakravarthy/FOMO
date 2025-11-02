@@ -218,7 +218,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[250vh] sm:h-[280vh] md:h-[300vh] py-16 sm:py-20 md:py-24 lg:py-40 overflow-hidden antialiased relative flex flex-col [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-auto min-h-[220vh] sm:h-[280vh] md:h-[300vh] pt-16 pb-56 sm:py-20 md:py-24 lg:py-40 overflow-visible sm:overflow-hidden antialiased relative flex flex-col [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -239,11 +239,37 @@ export const HeroParallax = ({
             <ProductCard product={product} translate={translateXReverse} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-4 sm:space-x-6 md:space-x-10 lg:space-x-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-4 sm:space-x-6 md:space-x-10 lg:space-x-20 mb-24">
           {thirdRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
         </motion.div>
+      </motion.div>
+
+      {/* Mobile-only engagement block to use leftover space */}
+      <motion.div
+        className="relative sm:hidden px-4 mt-64"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 -top-10 bottom-0 -z-10 bg-[url('/project_bottom.jpg')] bg-cover bg-center opacity-40"
+        />
+        <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5 shadow-lg">
+          <h3 className="text-white font-semibold text-base">Enjoyed the projects?</h3>
+          <p className="text-gray-300 text-sm mt-1">
+            Let's bring your idea to life. We design, build, and ship fast.
+          </p>
+          <a
+            href="#contact"
+            className="mt-4 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-green-600 via-emerald-600 to-lime-600 px-4 py-2 text-sm font-medium text-white shadow transition hover:from-green-500 hover:to-lime-500"
+          >
+            Start a conversation
+          </a>
+        </div>
       </motion.div>
     </div>
   );
