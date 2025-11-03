@@ -88,7 +88,9 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 lg:col-span-4">
+          <div className="order-1 lg:order-2 lg:col-span-4 space-y-6">
+            <CustomerForm />
+
             <div className="relative rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6 md:p-8 shadow-2xl backdrop-blur-xl">
               <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10" />
               <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10" />
