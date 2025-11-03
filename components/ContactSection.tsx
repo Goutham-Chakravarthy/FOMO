@@ -3,6 +3,7 @@
 import React from "react";
 import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import BeamGridBackground from "@/components/ui/beam-grid-background";
+import CustomerForm from "./CustomerForm";
 
 export default function ContactSection() {
   const WHATSAPP_NUMBER = "918095534884";
