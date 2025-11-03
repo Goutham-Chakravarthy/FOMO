@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       );
     } catch (validationError) {
       if (validationError instanceof z.ZodError) {
-        const fieldErrors = validationError.errors.reduce((acc, error) => {
+        const fieldErrors = validationError.issues.reduce((acc: Record<string, string>, error) => {
           acc[error.path.join('.')] = error.message;
           return acc;
         }, {} as Record<string, string>);
