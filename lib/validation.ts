@@ -50,7 +50,7 @@ export const customerFormSchema = z.object({
 
   projectType: z
     .enum(projectTypeOptions, {
-      errorMap: () => ({ message: 'Please select a project type' })
+      message: 'Please select a project type'
     }),
 
   projectDetails: z
